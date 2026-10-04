@@ -24,31 +24,31 @@ function runStrainExperiment(strainType) {
 
         if (strainType === 'S') {
             ratTest.classList.add('dead');
-            statusTest.innerText = 'სტატუსი: ❌ თაგვი მოკვდა';
+            statusTest.innerText = 'სტატუსი: ❌ ზღვის გოჭი მოკვდა';
             statusTest.classList.add('dead-status');
             testBadge.innerText = 'S შტამი (პათოგენური)';
             
-            conclusionText.innerText = 'მონაცემებიდან გამომდინარე S შტამის ბაქტერია არის მომაკვდინებელი, რადგან უმრავლეს შემთხვევაში ამ ინექციით კვდებოდნენ თაგვები.';
+            conclusionText.innerText = 'მონაცემებიდან გამომდინარე S შტამის ბაქტერია არის მომაკვდინებელი, რადგან უმრავლეს შემთხვევაში ამ ინექციით კვდებოდნენ ზღვის გოჭები.';
 
             resultText.innerHTML = `
                 <strong>❌ შედეგი (S შტამი):</strong> 
                 S შტამის ბაქტერიას აქვს დამცავი კაფსულა. 
-                ინექციის შეყვანიდან <strong> საცდელი თაგვი მოკვდა</strong>.<br>
-                <em>შენიშვნა: საკონტროლო ჯგუფის თაგვი რჩება ცოცხალი.</em>
+                ინექციის შეყვანიდან <strong> საცდელი ზღვის გოჭი მოკვდა</strong>.<br>
+                <em>შენიშვნა: საკონტროლო ჯგუფის ზღვის გოჭი რჩება ცოცხალი.</em>
             `;
         } else if (strainType === 'R') {
             ratTest.classList.remove('dead');
-            statusTest.innerText = 'სტატუსი: ✅ თაგვი ცოცხალია';
+            statusTest.innerText = 'სტატუსი: ✅ ზღვის გოჭი ცოცხალია';
             statusTest.classList.remove('dead-status');
             testBadge.innerText = 'R შტამი (არაპათოგენური)';
 
-            conclusionText.innerText = 'R შტამის ინექციის შემდეგ თაგვი დარჩა ცოცხალი (R შტამი არ არის მომაკვდინებელი).';
+            conclusionText.innerText = 'R შტამის ინექციის შემდეგ ზღვის გოჭი დარჩა ცოცხალი (R შტამი არ არის მომაკვდინებელი).';
 
             resultText.innerHTML = `
                 <strong>✅ შედეგი (R შტამი):</strong> 
                 R შტამის ბაქტერიას არ აქვს დამცავი კაფსულა. 
-                ინექციის შემდეგ <strong>საცდელი თაგვი დარჩა ცოცხალი და ჯანმრთელი</strong>.<br>
-                <em>შენიშვნა: საკონტროლო ჯგუფის თაგვიც უცვლელად ცოცხალია.</em>
+                ინექციის შემდეგ <strong>საცდელი ზღვის გოჭი დარჩა ცოცხალი და ჯანმრთელი</strong>.<br>
+                <em>შენიშვნა: საკონტროლო ჯგუფის ზღვის გოჭიც უცვლელად ცოცხალია.</em>
             `;
         }
 
