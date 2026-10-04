@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ბაქტერიული შტამების მოქმედების ცდა</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>🧪 ბაქტერიული შტამების (S და R) მოქმედება ვირთაგვებზე</h1>
+
+        <!-- კვლევის პარამეტრები (კითხვა, ჰიპოთეზა, დასკვნა) -->
+        <div class="research-header-panel">
+            <div class="research-item">
+                <strong>❓ საკვლევი კითხვა:</strong> 
+                <span>რომელი შტამის ბაქტერია არის მომაკვდინებელი?</span>
+            </div>
+            <div class="research-item">
+                <strong>💡 ჰიპოთეზა:</strong> 
+                <span>S შტამის ბაქტერია</span>
+            </div>
+            <div class="research-item conclusion-item">
+                <strong>📌 ცდის შედეგად შენი დასკვნა:</strong> 
+                <span id="conclusion-text">ჩაატარეთ ცდა S შტამზე დასკვნის მისაღებად...</span>
+            </div>
+        </div>
+
+        <!-- მართვის ღილაკები -->
+        <div class="controls">
+            <button id="btn-s-strain" onclick="runStrainExperiment('S')">💉 შეიყვანე S შტამი (ვირულენტური)</button>
+            <button id="btn-r-strain" onclick="runStrainExperiment('R')">💉 შეიყვანე R შტამი (არავირულენტური)</button>
+            <button id="btn-reset" onclick="resetStage()">🔄 უკან დაბრუნება</button>
+        </div>
+
+        <!-- ექსპერიმენტული სივრცე / გალიები -->
+        <div class="cages-container">
+            
+            <!-- გალია 1: საკონტროლო ჯგუფი -->
+            <div class="cage-card" id="control-cage">
+                <div class="cage-header">
+                    <h3>🏠 საკონტროლო ჯგუფი</h3>
+                    <span class="badge control-badge">ინექციის გარეშე</span>
+                </div>
+                
+                <div class="cage-display">
+                    <img src="https://images.unsplash.com/photo-1548767797-d8c844163c4c?w=400&auto=format&fit=crop&q=80" alt="საკონტროლო თაგვი" class="rat-img" id="rat-control">
+                </div>
+
+                <div class="environment-conditions">
+                    <strong>⚙️ გარემო პირობები:</strong>
+                    <ul>
+                        <li>🥗 კვება: ერთნაირი</li>
+                        <li>💧 წყალი: ერთნაირი</li>
+                        <li>🌡 ტემპერატურა: 22°C</li>
+                    </ul>
+                </div>
+                
+                <div class="status-box" id="status-control">სტატუსი: ცოცხალი და ჯანმრთელი</div>
+            </div>
+
+            <!-- გალია 2: საცდელი ჯგუფი -->
+            <div class="cage-card" id="test-cage">
+                <div class="cage-header">
+                    <h3>🧪 საცდელი ჯგუფი</h3>
+                    <span class="badge test-badge" id="test-badge">ელოდება ინექციას</span>
+                </div>
+                
+                <div class="cage-display">
+                    <img src="https://images.unsplash.com/photo-1548767797-d8c844163c4c?w=400&auto=format&fit=crop&q=80" alt="საცდელი თაგვი" class="rat-img" id="rat-test">
+                    
+                    <!-- ნემსის / შპრიცის ანიმაცია -->
+                    <div class="syringe-anim" id="syringe-test">
+                        <svg viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- შპრიცის დგუში და ცილინდრი -->
+                            <rect x="236" y="20" width="40" height="70" rx="5" fill="#334155"/>
+                            <rect x="246" y="90" width="20" height="90" fill="#94a3b8"/>
+                            <rect x="200" y="170" width="112" height="20" rx="4" fill="#334155"/>
+                            <rect x="216" y="190" width="80" height="180" rx="8" fill="#e2e8f0" stroke="#334155" stroke-width="8"/>
+                            <!-- სითხე შპრიცში -->
+                            <rect x="224" y="240" width="64" height="120" fill="#ef4444" opacity="0.85"/>
+                            <!-- დანაყოფები -->
+                            <line x1="220" y1="220" x2="240" y2="220" stroke="#334155" stroke-width="4"/>
+                            <line x1="220" y1="250" x2="240" y2="250" stroke="#334155" stroke-width="4"/>
+                            <line x1="220" y1="280" x2="240" y2="280" stroke="#334155" stroke-width="4"/>
+                            <line x1="220" y1="310" x2="240" y2="310" stroke="#334155" stroke-width="4"/>
+                            <line x1="220" y1="340" x2="240" y2="340" stroke="#334155" stroke-width="4"/>
+                            <!-- ნემსის თავი და ფოლადის ნემსი (მიმართული ქვემოთ) -->
+                            <path d="M236 370 L276 370 L266 400 L246 400 Z" fill="#64748b"/>
+                            <line x1="256" y1="400" x2="256" y2="490" stroke="#0f172a" stroke-width="6" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="environment-conditions">
+                    <strong>⚙️ გარემო პირობები:</strong>
+                    <ul>
+                        <li>🥗 კვება: ერთნაირი</li>
+                        <li>💧 წყალი: ერთნაირი</li>
+                        <li>🌡 ტემპერატურა: 22°C</li>
+                    </ul>
+                </div>
+
+                <div class="status-box" id="status-test">სტატუსი: ცოცხალი</div>
+            </div>
+
+        </div>
+
+        <!-- შედეგისა და ახსნის ბლოკი -->
+        <div class="result-panel" id="result-panel">
+            <h3>📊 ექსპერიმენტის მიმდინარეობა და დაკვირვება</h3>
+            <p id="result-text">აირჩიეთ ერთ-ერთი შტამი (S ან R) ინექციის განსახორციელებლად.</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
